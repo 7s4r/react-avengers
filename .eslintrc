@@ -1,0 +1,56 @@
+{
+  "extends": [
+    "standard",
+    "standard-react",
+    "airbnb"
+  ],
+  "plugins": [
+    "babel",
+    "react"
+  ],
+  "env": {
+    "browser" : true
+  },
+  "globals" : {
+    "Action"       : false,
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__DEBUG_NEW_WINDOW__" : false,
+    "__BASENAME__" : false
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "no-console": 0,
+    "semi": [
+      2,
+      "never"
+    ],
+    "func-names": 0,
+    "space-before-function-paren": 0,
+    "no-multi-spaces": 0,
+    "babel/generator-star-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "babel/new-cap": 1,
+    "babel/object-shorthand": 1,
+    "babel/arrow-parens": 1,
+    "babel/no-await-in-loop": 1,
+    "arrow-body-style": [
+      "error",
+      "always"
+    ],
+    "max-len": 0,
+    "no-param-reassign": 0,
+    "yoda": [
+      "error",
+      "always"
+    ],
+    "react/require-extension": 0,
+    "react/forbid-prop-types": 0
+  }
+}
