@@ -24,11 +24,11 @@ const receiveError = (error) => {
   }
 }
 
-export const loadHero = () => {
+export const loadHero = (heroId) => {
   return (dispatch) => {
-    return getHeroDetails()
+    return getHeroDetails(heroId)
       .then((response) => {
-        return dispatch(receiveSuccess(response.results))
+        return dispatch(receiveSuccess(response.data.results[0]))
       })
       .catch((error) => {
         return dispatch(receiveError(error))
@@ -39,25 +39,22 @@ export const loadHero = () => {
 /*
  Reducer
  */
-const initialState = fromJS([
-  {
-    id: 0,
-    name: null,
-    thumbnail: null
-  }
-])
+const initialState = fromJS({
+  id: 0,
+  name: null,
+  thumbnail: null,
+  description: null,
+  series: null,
+  comics: null,
+})
 
 const transform = (hero, state) => {
-  let i
-  let current
-
-  for (i = 0; i < hero.length; i += 1) {
-    current = hero[i]
-    state = state.setIn([i, 'id'], current['@id'])
-    state = state.setIn([i, 'name'], current.name)
-    state = state.setIn([i, 'thumbnail'], current.thumbail.path + current.thumbail.extension)
-    state = state.setIn([i, 'description'], current.description)
-  }
+  state = state.set('id', hero.id)
+  state = state.set('name', hero.name)
+  state = state.set('thumbnail', `${hero.thumbnail.path}.${hero.thumbnail.extension}`)
+  state = state.set('description', hero.description)
+  state = state.set('series', hero.series.items)
+  state = state.set('comics', hero.comics.items)
 
   return state
 }
@@ -65,8 +62,8 @@ const transform = (hero, state) => {
 export default function heroReducer(state = initialState, action) {
   switch (action.type) {
     case HERO_RECEIVE:
-      return transform(action.hero, initialState)
+      return transform(action.hero, state)
     default:
-      return state
+      return initialState
   }
 }

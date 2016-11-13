@@ -4,9 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 const Layout = (props) => {
   return (
     <MuiThemeProvider>
-      <div>
-        {props.children}
-      </div>
+      {props.children}
     </MuiThemeProvider>
   )
 }

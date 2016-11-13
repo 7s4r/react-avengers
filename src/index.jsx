@@ -23,16 +23,15 @@ const store = createStore(
     routerMiddleware(browserHistory)
   )
 )
-const history = syncHistoryWithStore(browserHistory, store)
 
 injectTapEventPlugin()
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={syncHistoryWithStore(browserHistory, store)}>
       <Route path="/" component={Layout}>
         <IndexRoute component={Home} />
-        <Route path="heroes/:name" component={Details} />
+        <Route path="heroes/:heroId" component={Details} />
       </Route>
     </Router>
   </Provider>,

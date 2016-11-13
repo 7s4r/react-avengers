@@ -28,4 +28,4 @@ const callApi = (endpoint) => {
 
 // API services
 export const getHeroes = () => { return callApi('/characters') }
-export const getHeroDetails = (id) => { return callApi(`/characters/${id}`) }
+export const getHeroDetails = (heroId) => { return callApi(`/characters/${heroId}`) }
