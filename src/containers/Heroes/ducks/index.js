@@ -53,9 +53,10 @@ const transform = (heroes, state) => {
 
   for (i = 0; i < heroes.length; i += 1) {
     current = heroes[i]
-    state = state.setIn([i, 'id'], current['@id'])
+    state = state.setIn([i, 'id'], current.id)
     state = state.setIn([i, 'name'], current.name)
-    state = state.setIn([i, 'thumbnail'], current.thumbail.path + current.thumbail.extension)
+    state = state.setIn([i, 'description'], current.description)
+    state = state.setIn([i, 'thumbnail'], `${current.thumbnail.path}.${current.thumbnail.extension}`)
   }
 
   return state

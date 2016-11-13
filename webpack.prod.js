@@ -1,12 +1,11 @@
 var webpack = require("webpack")
 var path = require('path')
-var autoprefixer = require('autoprefixer')
 
 module.exports = {
   devtool: 'source-map',
   resolve: {
     root: './',
-    extensions: ['', '.js', '.jsx', '.scss', '.json'],
+    extensions: ['', '.js', '.jsx'],
     modulesDirectories: ['src', 'node_modules']
   },
   entry: [
@@ -32,21 +31,8 @@ module.exports = {
         loader: 'babel',
         exclude: /node_modules/
       },
-      {
-        test: /\.scss$/,
-        loader: 'style!css?sourceMap!postcss!sass?sourceMap'
-      },
-      {
-        test: /\.json/,
-        loader: 'json'
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url'
-      }
     ]
   },
-  postcss: [autoprefixer],
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

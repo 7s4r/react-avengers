@@ -1,7 +1,5 @@
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var autoprefixer = require('autoprefixer')
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -30,9 +28,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new ExtractTextPlugin('css/[name].css?[hash]', {
-      allChunks: false
-    })
   ],
   module: {
     loaders: [
@@ -49,21 +44,8 @@ module.exports = {
         loader: 'babel!eslint',
         exclude: /node_modules/
       },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
-      },
-      {
-        test: /\.json/,
-        loader: 'json'
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url'
-      }
     ]
   },
-  postcss: [autoprefixer],
   devServer: {
     contentBase: './src',
     hot: true,

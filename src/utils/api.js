@@ -10,8 +10,7 @@ const callApi = (endpoint) => {
   return new Promise((resolve, reject) => {
     fetch(`${fullUrl}?ts=${ts}&apikey=${config.apiPublicKey}&hash=${hash}`, {
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
         Accept: 'application/json'
       }
     })

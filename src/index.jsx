@@ -7,6 +7,7 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise'
 import createLogger from 'redux-logger'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import allReducers from './utils/reducers'
 import Layout from './containers/Layout'
 import Home from './pages/home'
@@ -23,6 +24,8 @@ const store = createStore(
   )
 )
 const history = syncHistoryWithStore(browserHistory, store)
+
+injectTapEventPlugin()
 
 ReactDOM.render(
   <Provider store={store}>
